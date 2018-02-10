@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+require "./shot"
+
+shot = Shot.new
+
+p "Введите координату X корабля"
+p "Для подтверждения нажмите ENTER"
+x = gets # получение координаты
+
+p shot.shot x.chomp
