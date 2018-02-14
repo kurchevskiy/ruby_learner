@@ -7,12 +7,9 @@ class Ship
   # stranger  = true|false 
   # ship_size кол-во клеток
   def initialize stranger, ship_size
+    raise 'Невернывый размер Ship' unless (1..4).include?(ship_size) 
     @is_stranger = stranger 
-    if (1..4).include?(ship_size)
-      @ship_size = ship_size
-    else 
-      raise "Невернывый размер Ship"
-    end
+    @ship_size = ship_size
   end
 
   # Состояние коробля

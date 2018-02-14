@@ -1,10 +1,12 @@
 #!/usr/bin/env ruby
-require "./shot"
+require_relative 'shot'
 
-shot = Shot.new
 
-p "Введите координату X корабля"
-p "Для подтверждения нажмите ENTER"
-x = gets # получение координаты
+puts 'Введите координаты X корабля'
+puts 'Для подтверждения нажмите ENTER'
+coords = gets
+coords = coords.scan(/\w+/) 
 
-p shot.shot x.chomp
+coord = Shot.new(coords[0].chomp, coords[1].chomp)
+p coord.coords
+	

@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby
+require_relative 'coord'
+
+begin 
+  puts 'Введите название первого однопалубника'
+  puts 'Для подтверждения нажмите ENTER'
+  name1 = gets #
+  
+  puts 'Введите размер первого кораблика'
+  puts 'Для подтверждения нажмите ENTER'
+  size1 = gets # получение координаты
+
+  puts 'Введите координаты первого однопалубника'
+  puts 'Формат ввода `x y` например `1 12`'
+  puts 'Имейте ввиду при не указании координаты, по умолчанию равна `0`'
+  coords = gets
+  coords = coords.scan(/\w+/) 
+
+  coord = Coord.new(coords[0].to_i, coords[1].to_i)
+  coord.create_ship(name1.chomp, size1.chomp)
+  exit if coord.is_ready
+
+  puts 'Кораблик успешно создан'
+  puts 'Добаляем остальные координаты'
+
+  loop do
+    puts 'Формат ввода `x y` например `1 12`'
+    puts 'Имейте ввиду при не указании координаты, по умолчанию равна `0`'
+    coords = gets
+    coords = coords.scan(/\w+/)
+    coord.add(coords[0].to_i, coords[1].to_i) 
+    break if coord.is_ready
+  end 
+
+rescue Exception => e
+  puts e.message
+end
