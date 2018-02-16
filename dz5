@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+items = ["cat", "dog", "tiger"]
+items.map {|item| puts item.capitalize!; puts item.downcase! }
+p items

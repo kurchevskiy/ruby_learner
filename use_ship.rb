@@ -1,4 +1,4 @@
-require "./ship"
+require_relative "ship"
 
 begin
   ship = Ship.new false, 5
