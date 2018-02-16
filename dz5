@@ -2,3 +2,5 @@
 items = ["cat", "dog", "tiger"]
 items.map {|item| puts item.capitalize!; puts item.downcase! }
 p items
+
+p items.select {|item| item =~ /t/ }

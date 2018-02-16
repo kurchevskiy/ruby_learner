@@ -62,6 +62,7 @@ class Ship
     @coords << Coord.new(x.to_i, y.to_i)
   end
 
+  # Добавление координат и размера кораблика
   def add_coords(ship_size, coords)
     raise 'Извините, но ваш кораблик не достроен. Достройте его, а то он утонет!' unless ship_size.to_i == coords.size
     @ship_size = ship_size.to_i
