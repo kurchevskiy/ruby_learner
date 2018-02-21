@@ -5,13 +5,13 @@ list_workers = []
 
 loop do
 	puts 'Введите Имя работника:'
-	full_name = gets.chomp 
-	exit if full_name == 'exit'
+	worker = gets.chomp 
+	break if worker == 'exit'
 	puts 'Размер зарплаты работника:'
 	salary = gets.chomp
-	exit if salary == 'exit'
+	break if salary == 'exit'
 	begin
-	  worker = Worker.new(full_name, salary)
+	  worker = Worker.new(workers, salary)
 	rescue Exception => e
 	  puts e.message; next
 	end
@@ -19,3 +19,4 @@ loop do
 	list_workers << worker
 end
 
+list_workers.map(&:to_s).tap{ |x| puts x }
