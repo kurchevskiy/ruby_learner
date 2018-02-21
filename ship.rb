@@ -72,7 +72,7 @@ class Ship
   end
   
   # Проверка достроен ли кораблик 
-  def is_ready
+  def ready?
     @ship_size == @coords.size
   end
 

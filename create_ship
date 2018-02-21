@@ -6,56 +6,43 @@ def check_count_ships(ships, size)
   ships.select{|s| s.ship_size == size}.size == Ship.how_many_ships(size)
 end
 
-begin 
-  size = 1
-  counter = 1 # Для отображения
-  ships = []
-  loop do 
-    puts "Введите название #{counter}-го Кораблика"
-    puts 'Для подтверждения нажмите ENTER'
+
+size = 1
+counter = 1 # Для отображения
+ships = []
+loop do 
+  puts "Введите название #{counter}-го Кораблика"
+  puts 'Для подтверждения нажмите ENTER'
+  
+  name1 = gets.chomp # получении наименования Кораблика
+  
+  begin
+    ship = Ship.new(name1, size)
+  rescue Exception => e
+    puts e.message; next
+  end
+ 
+  puts "Введите координаты #{counter}-го Кораблика"
+  
+  
+  loop do
+    puts 'Формат ввода \'x y\' например \'1 12\''
+    puts 'Имейте ввиду при не указании координаты, по умолчанию равна \'0\''
+    coords = oords.scan(/\w+/).map(&:chomp)
     
-    name1 = gets # получении наименования Кораблика
-    
+    # Обработка исключения при добавлении  
     begin
-      ship = Ship.new(name1.chomp, size)
+      ship.add(coords[0], coords[1]) # Добавляем координату 
     rescue Exception => e
       puts e.message; next
     end
-   
-    puts "Введите координаты #{counter}-го Кораблика"
-    
-    # coords = [] # Создание пустого массива
-    # coord = gets.scan(/\w+/)
-    # coords << coord
-    # begin
-    #   ship.add_coords(size, coords)
-    # rescue Exception => e
-    #   puts e.message; next
-    # end
-    
-    loop do
-      puts 'Формат ввода `x y` например `1 12`'
-      puts 'Имейте ввиду при не указании координаты, по умолчанию равна `0`'
-      coords = gets.scan(/\w+/)
-      
-      # Обработка исключения при добавлении  
-      begin
-        ship.add(coords[0].to_i, coords[1].to_i) # Добавляем координату 
-      rescue Exception => e
-        puts e.message; next
-      end
-      
-      break if ship.is_ready
-    end
-
-    ships << ship
-
-    break if size == 4
-    size += 1 if check_count_ships(ships, size)
-    counter += 1
+    break if ship.ready?
   end
-  puts "Кол-во корабликов #{ships.size}"
 
-rescue Exception => e
-  puts e.message
+  ships << ship
+
+  break if size == 4
+  size += 1 if check_count_ships(ships, size)
+  counter += 1
 end
+puts "Кол-во корабликов #{ships.size}"

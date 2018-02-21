@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+require_relative 'worker'
+
+puts 'Введите Имя работника:'
+full_name = gets.chomp 
+puts 'Размер зарплаты работника:'
+salary = gets.chomp
+
+begin
+  worker = Worker.new(full_name, salary)
+rescue Exception => e
+  puts e.message
+  exit
+end
+
+puts worker.to_s
+
+p worker.to_ary

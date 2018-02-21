@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+require_relative 'worker'
+
+list_workers = []
+
+loop do
+	puts 'Введите Имя работника:'
+	full_name = gets.chomp 
+	exit if full_name == 'exit'
+	puts 'Размер зарплаты работника:'
+	salary = gets.chomp
+	exit if salary == 'exit'
+	begin
+	  worker = Worker.new(full_name, salary)
+	rescue Exception => e
+	  puts e.message; next
+	end
+
+	list_workers << worker
+end
+
