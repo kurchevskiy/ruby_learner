@@ -3,7 +3,7 @@ class Worker
 
 	def initialize(name, salary)
     raise 'Не введен размер зарплаты' if salary == ''
-		@name, @salary = name, salary.to_i
+		self.name, self.salary = name, salary.to_i
 	end
 
   def prize
@@ -14,7 +14,7 @@ class Worker
     @salary + prize
   end
 
-  def to_s
+  def to_str
     'Сотрудник ' + @name + ' в этом месяце получит ' + sum.to_s + ' рублей!'
   end
 

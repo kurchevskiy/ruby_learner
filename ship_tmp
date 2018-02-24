@@ -1,6 +1,12 @@
 #!/usr/bin/env ruby
 require_relative 'ship'
 
+# проверка кол-ва корабликов по размерам
+def check_count_ships(ships, size)
+  ships.select{|s| s.ship_size == size}.size == Ship.how_many(size)
+end
+
+
 size = 1
 counter = 1 # Для отображения
 ships = []
@@ -34,9 +40,9 @@ loop do
   end
 
   ships << ship
-  Ship.add_ship(size)
+
   break if size == 4
-  size += 1 if Ship.check_count_ships(size)
+  size += 1 if check_count_ships(ships, size)
   counter += 1
 end
 puts "Кол-во корабликов #{ships.size}"

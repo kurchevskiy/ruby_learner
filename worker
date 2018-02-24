@@ -13,6 +13,3 @@ rescue Exception => e
   exit
 end
 
-puts worker.to_s
-
-p worker.to_ary

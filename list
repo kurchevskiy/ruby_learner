@@ -11,7 +11,7 @@ loop do
 	salary = gets.chomp
 	break if salary == 'exit'
 	begin
-	  worker = Worker.new(workers, salary)
+	  worker = Worker.new(worker, salary)
 	rescue Exception => e
 	  puts e.message; next
 	end
@@ -19,4 +19,5 @@ loop do
 	list_workers << worker
 end
 
-list_workers.map(&:to_s).tap{ |x| puts x }
+list_workers.map(&:to_str).tap{ |x| puts x }
+list_workers.map(&:to_ary).tap{ |x| p x } # Вывод массива как есть

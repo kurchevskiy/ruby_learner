@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+require_relative 'player'
+
+puts 'Введите Количество выстрелов первого игрока:'
+p1 = gets.chomp
+
+puts 'Введите Количество выстрелов второго игрока:'
+p2 = gets.chomp
+
+player1 = Player.new(p1)
+
+player2 = Player.new(p2)
+
+
+if player1 > player2
+  puts "Выигрывает 1"
+elsif player1 == player2
+  puts "Ничья"
+elsif player1 < player2
+  puts "Выигрывает 2"
+end
